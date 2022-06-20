@@ -25,7 +25,7 @@
 	Step 5:
 	
 	 http://localhost:4200/
-	 login: admin@gmail.command
+	 login: admin@gmail.com
 	 password: abc123ABC
 	 
 	
