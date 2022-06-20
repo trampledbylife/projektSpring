@@ -1,0 +1,1 @@
+INSERT INTO shop.auth_user (`auth_user_id`,`email`,`password`,`status`) VALUES (1,'admin@gmail.com','$2a$10$zwn5J27vlsRC3/wWEX8FA.EfdVreMC5vdXsxwV7IQ8to1jrdLqzeG','ROLE_ADMIN');

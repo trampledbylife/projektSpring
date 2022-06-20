@@ -1,0 +1,84 @@
+<app-menu></app-menu>
+
+<div class="container-fluid">
+  <div class="row div-title" >
+    <div class="col-12">
+      <h1 class="title" ><strong>Shipping & Payment</strong></h1>
+    </div>
+  </div>
+</div>
+
+<div style="max-width: 100%">
+    <div class='d-flex justify-content-center' style="margin-bottom: 2%;">
+        <div class="col-md-8 order-md-1">        
+          <h4 class="mb-3">Shipping address</h4>
+          <form form action="" method="post" >
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="AName"  name="AName" placeholder="" value="" [(ngModel)]="address.name" required autofocus>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="ASurname" name="ASurname" placeholder="" value="" [(ngModel)]="address.surname" required="">
+              </div>
+            </div>    
+          
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">Street</label>
+                <input type="text" class="form-control" id="Street" name="Street" placeholder="" value="" [(ngModel)]="address.street" required >
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">City</label>
+                <input type="text" class="form-control" id="City" name="City" placeholder="" value="" [(ngModel)]="address.city" required="">
+              </div>
+            </div>    
+            
+            <div class='d-flex justify-content-center'>            
+              <div class="col-md-3 mb-3">
+                <label for="zip">House number</label>
+                <input type="text" class="form-control" id="number" name="number" placeholder="" [(ngModel)]="address.house_number" required="">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="zip">Postal code</label>
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="" [(ngModel)]="address.postal_code" required="">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="zip">Phone number</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="" [(ngModel)]="address.phone" required="">
+              </div>            
+            </div>
+            
+            <hr class="mb-4">
+    
+            <h4 class="mb-3">Payment</h4>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="cc-name">Customer data</label>
+                <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+                <small class="text-muted">First and last name on credit card</small>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="cc-number">Credit card number</label>
+                <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">Credit card validity</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="cc-cvv">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+              </div>
+            </div>
+            <hr class="mb-4">
+            
+            <button class="btn btn-primary btn-lg btn-block" name="submit" type="submit"  (click)="execute()"  > Confirm and pay</button>
+            
+          </form>
+        </div>
+    </div>
+  </div>

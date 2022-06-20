@@ -1,0 +1,38 @@
+<app-menu></app-menu>
+<div class="container-fluid">
+  <div class="row div-title" >
+    <div class="col-12">
+      <h1 class="title" ><strong>Accounts management</strong></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <button class="btn btn-dark btn-new-product" (click)="addUser()">Add New User</button>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <table class="table product-table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.email}}</td>
+            <td>
+              <button type="button" class="btn btn-dark btn-details" (click)="viewUser(user.id)">Show Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <app-adduser *ngIf="action === 'add'" [user]="selectedUser" (userAddedEvent)="refreshData()"></app-adduser>
+    <app-viewuser *ngIf="action === 'view'" [user]="selectedUser" (userDeletedEvent)="refreshData()"></app-viewuser>
+    </div>  
+  </div>
+</div>

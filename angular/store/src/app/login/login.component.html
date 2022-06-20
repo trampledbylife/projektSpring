@@ -1,0 +1,30 @@
+<app-menu></app-menu>
+
+  
+  <html lang="en">
+  <body>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+        <form class="box" >
+          <h1>Sign in</h1>
+          <input type="email" name="username" placeholder="Email" [(ngModel)]="username">
+          <input type="password" name="password" placeholder="Password" [(ngModel)]="password">
+          <p *ngIf="invalidLogin==true"  style="color: red;">Invalid login or password</p>
+          <button (click)=checkLogin() value="Login">Login</button>
+
+          <p>Don't you have account? 
+            <a  style="color: blue;" href="http://localhost:4200/register">Sign up</a>
+          </p>
+
+        </form>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+  
+</html>
+
+

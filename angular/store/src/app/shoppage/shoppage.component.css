@@ -1,0 +1,94 @@
+img{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    margin: auto;
+    width: 95%;
+    text-align: center;
+    font-family: arial;
+    transition: all 0.5s;
+  }
+
+.card:hover{
+    width: 100%;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+}
+  
+  .price {
+    color: orange;
+    font-size: 22px;
+  }
+  
+  .card button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    border: none;
+    outline: 0;
+    padding: 12px;
+    border-radius: 15px;
+    color: white;
+    background-color: #000;
+    opacity: 0.8;
+    text-align: center;
+    cursor: pointer;
+    width: 80%;
+    font-size: 18px;
+    transition: 0.25s;
+  }
+  
+  .card button:hover {
+    opacity: 1;
+    font-size: 24px;
+    width: 90%;
+  }  
+
+
+  /* ---------------- */
+
+  .main-container{
+    padding: 1% 0% 2% 0%; 
+    background-color: #ddd;
+    margin-bottom: 1%;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  li{
+    list-style-type: none;
+  }
+
+  .cart-button{
+    color: #fff;
+    padding-top: 4%;
+    padding-bottom: 3.5%;
+    width: 250px;
+  }
+
+  .btn-dark{
+    transition: 0.25s;
+  }
+
+  .btn-dark:hover{
+    background-color: #000;
+  }
+
+  .cart-item{
+    text-align: center
+  }
+
+  .dropdown-menu{
+    width: 250px;
+    animation-name: menu-anim;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes menu-anim{
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }

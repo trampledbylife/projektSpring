@@ -1,0 +1,31 @@
+<form #recievedUser="ngForm">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center;">New User</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 offset-3">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" placeholder="Email" [(ngModel)]="user.email" name="email">
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-6 offset-3">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="user.password" name="password">
+    </div>
+  </div>
+
+  
+  <div class="row">
+    <div class="col-6 offset-3">
+      <p *ngIf="error==true"  style="color: red;">User with this email exist</p>
+      <button type="button" class="btn btn-save" (click)="addUser()">Add</button>
+    </div>
+  </div>
+</div>
+</form>

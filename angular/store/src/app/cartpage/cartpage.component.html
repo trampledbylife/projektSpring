@@ -1,0 +1,61 @@
+<app-menu></app-menu>
+
+<div class="container-fluid">
+  <div class="row div-title" >
+    <div class="col-12">
+      <h1 class="title" ><strong> <span class="glyphicon glyphicon-shopping-cart"></span> Cart ({{cartProducts.length}})</strong></h1>
+    </div>
+  </div>
+</div>  
+
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-6 offset-lg-1">
+    <div class="card card-products">
+      <table class="table">
+        <thead>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Amount</th>
+        </thead>
+        <tbody *ngFor="let item of cartProducts">
+          <td>
+            <img style="max-width: 100px; height: auto;" src="{{item.retrievedImage}}">
+            {{item.name}}
+          </td>
+          <td>{{item.price}} PLN</td>
+          <td>{{item.inCart}}</td>
+          <td>{{item.inCart*item.price}} PLN</td>
+        </tbody>
+      </table>
+    </div>
+    <button class="btn" *ngIf="cartProducts.length > 0"
+      style="margin: 20px 10px 20px auto; height: 40px; width: 150px;" 
+      role="button" (click)="emptyCart()">
+        Empty Cart
+    </button>
+  </div>
+
+  <div class="col-sm-12 col-md-4 col-lg-3 offset-lg-1" *ngIf="cartProducts.length > 0">
+    <div class="container-fluid container-summary">
+      <div class="row">
+        <div class="col-6">
+          <p class="summary-text">Summary</p>
+        </div>
+        <div class="col-6">
+          <p class="summary-text">{{amount}}zł</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn btn-summary" 
+            style="width: auto; margin-left: auto; margin-right: auto; height: 40px;" 
+            role="button" (click)="completeOrder()">
+              Complete the order
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

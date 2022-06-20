@@ -1,0 +1,26 @@
+<app-menu></app-menu>
+
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+      <form class="box">
+        <h1>Registration</h1>
+        <input type="email" name="username" placeholder="Email" [(ngModel)]="user.email">
+        <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password">
+        <input type="password" name="password" placeholder="Repeat password" [(ngModel)]="password" >
+        <p *ngIf="error==true"  style="color: red;">User with this email exist!</p>
+
+        <p *ngIf="validate(user.email, user.password, password)!='OK'" style="color: red;"> {{validate(user.email, user.password, password)}}</p>
+    
+        <div > <button (click)="addUser()" type="submit" >Register</button></div>
+
+        <p>Do you have account? 
+          <a  style="color: blue;" href="http://localhost:4200/login">Sign in</a>
+        </p>
+      </form>
+      </div>
+    </div>
+  </div>
+</body>

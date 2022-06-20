@@ -1,0 +1,86 @@
+<app-menu></app-menu>
+            
+<div class="container-fluid main-container">
+    <div class="row" style="margin-right: 0px; margin-left: 0px;">
+        <div class="col-sm-12 col-md-6 col-lg-8" style="padding: 0% 0% 0% 10%;">            
+            <h3>Categories</h3>
+            <button  class="btn btn-primary btn-sm" style="background-color:gray; border-color: black;" (click)="setCategory('all')"> All</button>
+            <button  class="btn btn-primary btn-sm" style="margin-left:5px; background-color:gray; border-color: black;"(click)="setCategory('device')"> Devices</button>
+            <button  class="btn btn-primary btn-sm" style="margin-left:5px; background-color:gray; border-color: black;"(click)="setCategory('material')"> Materials</button>
+            <button  class="btn btn-primary btn-sm" style="margin-left:5px; background-color:gray; border-color: black;" (click)="setCategory('other')"> Other</button>
+        </div>
+         
+
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <li class="dropdown">
+                <a href="#" class="btn btn-dark cart-button btn-lg " data-toggle="dropdown" aria-expanded="false">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart ({{cartProducts.length}})     
+                </a>
+                <ul  class="dropdown-menu dropdown-cart" role="menu">
+                    <li *ngFor="let item of cartProducts">
+                        <div class="item product-cart-item row">
+                            <div class="col-6" *ngIf="item">
+                               <p class="cart-item">{{item.name}}</p>
+                            </div>
+                            <div class="col-6" *ngIf="item">
+                               <p class="cart-item"><strong>{{item.inCart}}x{{item.price}} PLN</strong></p>
+                            </div>
+
+                            
+                        </div>
+                    </li>
+                    <hr>
+                    <div class="row" style="margin-right: 0px; margin-left: 0px;">
+                        <div class="col-6">
+                            <li><a class="btn btn-dark btn-small" style="color: #fff;" role="button" (click)="goToCart()">Open Cart</a></li>
+                        </div>
+                        <div class="col-6">
+                            <li *ngIf="cartProducts.length > 0">
+                                <a class="btn btn-danger btn-small" style="color: #fff;" role="button" (click)="emptyCart()">Clear Cart</a></li>                            
+                        </div>
+                    </div>
+                </ul>
+            </li>
+        </div>
+    </div>
+</div>
+
+
+<ng-container *ngIf="category=='all'" >
+    <div class="container-fluid row">
+        <div class="col-sm-12 col-md-6 col-lg-3" style="padding: 0" *ngFor="let product of products;let i=index">
+            <div class="card">
+                <img src="{{product.retrievedImage}}">
+                <h1>{{product.name}}</h1>
+                <p class="price">{{product.price}} PLN</p>
+                <button (click)="addToCart(product.id)" >Add to Cart</button>
+                <button (click)="showItem(product.id)" >Show more</button>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="category!='all'" >
+    <div class="container-fluid row">
+        
+            <ng-container *ngFor="let product of products">
+            <ng-container *ngIf="category==product.category ">
+            <div class="col-sm-12 col-md-6 col-lg-3" style="padding: 0">
+            <div class="card">
+                <img src="{{product.retrievedImage}}">
+                <h1>{{product.name}}</h1>
+                <p class="price">{{product.price}} PLN</p>
+                <button (click)="addToCart(product.id)" >Add to Cart</button>
+                <button (click)="showItem(product.id)" >Show more</button>
+            </div>
+        </div>
+        </ng-container>
+    </ng-container>
+        
+    </div>
+</ng-container>
+
+
+
+<app-footer></app-footer>
+   

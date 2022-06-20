@@ -1,0 +1,10 @@
+.dropdown-menu{
+    background-color: #eee;
+    animation-name: menu-anim;
+    animation-duration: 0.5s;
+  }
+
+ @keyframes menu-anim{
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }

@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+
+<div class="container-fluid">
+  <div class="row div-title" >
+    <div class="col-12">
+      <h1 class="title" ><strong>Product management</strong></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <button class="btn btn-dark btn-new-product" (click)="addProduct()">Add New Product</button>
+    </div>
+
+
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <table class="table product-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{product.name}}</td>
+            <td>
+              <button type="button" class="btn btn-dark btn-details" (click)="viewProduct(product.id)">Show Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <app-viewproduct *ngIf="action === 'view'" [product]="selectedProduct" (productDeletedEvent)="refreshData()"></app-viewproduct>
+      <app-addproduct *ngIf="action === 'edit' || action === 'add'" [product]="selectedProduct" (productAddedEvent)="refreshData()"></app-addproduct>
+    </div>  
+  </div>
+</div>

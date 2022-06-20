@@ -1,0 +1,42 @@
+
+<form>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Product Name" [(ngModel)]="product.name" name="name">
+      </div>
+      <div class="col-6">
+        <label for="category">Category</label>
+        <input type="text" class="form-control" id="category" placeholder="category" name="category" [(ngModel)]="product.category">        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <label for="description">Description</label>
+        <textarea type="text" class="form-control" rows="3" id="description" placeholder="Description" name="description" [(ngModel)]="product.description"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <label for="price">Price</label>
+        <input type="number" class="form-control" id="price" placeholder="price" name="price" [(ngModel)]="product.price">
+      </div>
+      <div class="col-6">
+        <label for="quantity">Quantity</label>
+        <input type="number" class="form-control" id="quantity" placeholder="quantity" name="quantity" [(ngModel)]="product.quantity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-6">
+        <div class="form-group" *ngIf="product.id == null">
+          <br>
+          <input type="file" (change)="onFileChanged($event)">
+          <img [src]="imgURL" height="200" width="200" *ngIf="imgURL">
+        </div>
+        <p *ngIf="photo_error==true"  style="color: red;">Photo size is too large</p>
+        <button type="button" class="btn btn-save" (click)="saveProduct()">Save Product</button>
+      </div>
+    </div>
+  </div>  
+</form>

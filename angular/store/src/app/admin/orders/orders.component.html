@@ -1,0 +1,38 @@
+<app-menu></app-menu>
+
+
+<div class="container-fluid">
+  <div class="row div-title" >
+    <div class="col-12">
+      <h1 class="title" ><strong>Orders</strong></h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="col-sm-12 col-md-12 col-lg-10 offset-lg-1">
+        <table class="table product-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders">
+              <td>{{order.order_id}}</td>
+              <td>{{order.order_status}}</td>
+              <td>
+                <button type="button" class="btn btn-dark btn-details" (click)="viewOrderDetails(order.order_id)">Show Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <app-vieworder *ngIf="action === 'view'" [order]="selectedOrder"> </app-vieworder>
+    </div>  
+  </div>
+</div>

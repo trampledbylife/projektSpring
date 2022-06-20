@@ -1,0 +1,60 @@
+<app-menu></app-menu>
+
+
+  
+  
+ <div class="container-fluid" style="margin-top: 3%;">
+   <div class="row">
+     <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-1">
+       <div class="card div-img" >
+         <img src="{{product.retrievedImage}}" style="width: 100%;">
+       </div>
+     </div>
+     <article class="card-body p-5">
+      <h1 class="title mb-3">{{product.name}}</h1>
+    
+    <p class="price-detail-wrap"> 
+      <span class="price h3 text-warning"> 
+        <span class="currency">Price: </span><span class="num">{{product.price}} PLN</span>
+      </span>    
+    </p> 
+    <dl class="param param-feature">
+      <dt>Product ID</dt>
+      <dd>{{product.id}}</dd>
+    </dl> 
+    <dl class="item-property">
+      <dt>Description</dt>
+      <dd><p>{{product.description}} </p></dd>
+    </dl>
+    <dl class="param param-feature">
+      <dt>Category</dt>
+      <dd>{{product.category}}</dd>
+    </dl> 
+    <dl class="param param-feature">
+      <dt>Availability in storage</dt>
+      <dd>{{product.quantity}}</dd>
+    </dl>  
+    
+    <hr>
+      <div class="row">
+        <div class="col-sm-5">
+          <dl class="param param-inline">
+            <dt>Quantity: </dt>
+            
+            <dd>
+              <input class="form-control form-control-sm" style="width:70px;" type="number" id="howMany" name="howMany" [(ngModel)]="howMany" placeholder="1" min="1" max={{product.quantity}}>
+            </dd>
+            
+              <button *ngIf="howMany<=product.quantity && howMany>0"  class="btn btn-primary btn-sm" (click)="addToCart()">Add To Cart</button>
+              <p *ngIf="howMany>product.quantity || howMany<1" style="color: rgb(231, 19, 19);">Product is not available in this quantity</p>
+          
+          </dl>  
+        </div> 
+      </div> 
+     
+    </article> 
+   </div>
+ </div>
+
+<br> <br> <br> <br>
+<br> <br>

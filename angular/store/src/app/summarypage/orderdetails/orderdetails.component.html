@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-11">
+
+      <div class="card card-order-details">
+          <h2>Order ID: {{order.order_id}}</h2>
+        
+          <table>
+            <tr>
+              <td>Order Date: {{order.order_date}}</td>
+            </tr>
+            <tr>
+              <td>Estimated delivery date: {{order.shipment_date}}</td>
+            </tr>
+            <tr>
+              <td>Order status: {{order.order_status}}</td>
+            </tr>
+
+            <tr>
+              <td>Payment status: {{order.payment.payment_status}}</td>
+            </tr>
+
+          
+            <hr>
+            <h4><strong>Shipment addres</strong></h4>
+            <tr>
+              <td>{{order.address.name}} {{order.address.surname}}</td>
+            </tr>
+            <tr>
+              <td>{{order.address.street}} {{order.address.house_number}}</td>
+            </tr>
+            <tr>
+              <td>{{order.address.postal_code}} {{order.address.city}}</td>
+            </tr>
+            <tr>
+              <td>Phone: {{order.address.phone}}</td>
+            </tr>
+            <hr>
+            
+            <h5><strong>Ordered products</strong></h5>
+            <tr>
+              <div class="card">
+              <table class="table">
+                <thead>
+                  <th>Product ID</th>
+                  <th>Product Name</th>        
+                  <th>Price</th>  
+                  <th>Quantity</th>  
+                  <th>Ammount</th>          
+                </thead>                
+                <tbody>  
+                  <tr *ngFor="let product of order.order_details" >  
+                    <td>{{product.product_id}}</td>
+                    <ng-container *ngFor="let item of products" ><td *ngIf="item.id==product.product_id">{{item.name}}</td></ng-container>  
+                    <td>{{product.cost/product.quantity}} PLN</td>
+                    <td>{{product.quantity}}</td>
+                    <td>{{product.cost}} PLN</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </tr>
+
+            <br> 
+        
+          </table>   
+          <h5><strong>Total amount: {{order.payment.amount}} PLN</strong></h5>
+        </div>      
+    </div>
+  </div>
+</div>
