@@ -2,27 +2,34 @@
 
   
   <html lang="en">
-  <body>
-    
+  <body >
+
     <div class="container">
-      <div class="row">
-        <div class="col-12">
-        <form class="box" >
-          <h1>Sign in</h1>
-          <input type="email" name="username" placeholder="Email" [(ngModel)]="username">
-          <input type="password" name="password" placeholder="Password" [(ngModel)]="password">
-          <p *ngIf="invalidLogin==true"  style="color: red;">Invalid login or password</p>
-          <button (click)=checkLogin() value="Login">Login</button>
-
-          <p>Don't you have account? 
-            <a  style="color: blue;" href="http://localhost:4200/register">Sign up</a>
-          </p>
-
-        </form>
+      <div class="login-container-wrapper clearfix">
+        <div class="logo">
+          <i class="fa fa-sign-in"></i>
         </div>
+
+        <div class="welcome"><strong>Welcome,</strong> please login</div>
+          <form class="form-horizontal login-form">
+            <div class="form-group relative">
+              <input id="email" class="form-control input-lg" type="email" name="username" [(ngModel)]="username" placeholder="Username" required>
+              <i class="fa fa-user"></i>
+            </div>
+            <div class="form-group relative password">
+              <input id="password" class="form-control input-lg" type="password" name="password" [(ngModel)]="password" placeholder="Password" required>
+              <i class="fa fa-lock"></i>
+            </div>
+            <div class="form-group">
+              <p *ngIf="invalidLogin==true"  style="color: red; text-align: center;">Invalid login or password</p>
+              <button (click)=checkLogin() type="submit" class="btn btn-success btn-lg btn-block" >Login</button>
+            </div>
+            <div class="checkbox pull-right">
+              <label> <a class="forget" href="http://localhost:4200/register" title="Register">New user? Register</a> </label>
+            </div>
+          </form>
       </div>
     </div>
-    
   </body>
   
 </html>
