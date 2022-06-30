@@ -95,7 +95,7 @@
                     <!-- Single Product -->
                     <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let product of products;let i=index">
                             <div id="product-1" class="single-product">
-                                    <div (click)="showItem(product.id)" class="part-1" style="background: url('{{product.retrievedImage}}') no-repeat center; background-size: cover">
+                                    <div class="part-1" style="background: url('{{product.retrievedImage}}') no-repeat center; background-size: cover">
                                             <ul>
                                                     <li><a (click)="addToCart(product.id)"><i class="fas fa-shopping-cart"></i></a></li>
                                                     <li><a href="#"><i class="fas fa-heart"></i></a></li>

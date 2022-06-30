@@ -7,3 +7,33 @@ h4{
     font-weight: bold;
     font-size: x-large;
 }   
+.button{
+    color: rgb(12, 11, 11);
+
+    width: 250px;
+  }
+
+  .btn-dark{
+    transition: 0.25s;
+  }
+
+  .btn-dark:hover{
+    background-color: #000;
+  }
+  .button {
+    border: none;
+    outline: 0;
+    height: 50px;
+    color: white;
+    background-color: #343a40;
+    opacity: 0.8;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.25s;
+  }
+  
+  .button:hover {
+    opacity: 1;
+    font-size: 24px;
+  }  
