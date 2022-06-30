@@ -1,14 +1,14 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="margin-bottom: 0px; border-radius: 0%;">
-        <div><a href="http://localhost:4200/" class="navbar-brand">STORE</a></div>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 0px; border-radius: 0%;">
+        <div><a href="http://localhost:4200/" style="font-family: 'Papyrus', Fantasy;" class="navbar-brand">Brand</a></div>
+        
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a *ngIf="adminAccess()" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a *ngIf="adminAccess()" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Admin Panel
                 </a>
-                <div class="dropdown-menu dropdown-cart" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a routerLink="/admin/users" class="dropdown-item">Users</a>
                     <a routerLink="/admin/products" class="dropdown-item">Products</a>
                     <a routerLink="/admin/orders" class="dropdown-item">Orders</a>
@@ -16,7 +16,9 @@
                 </div>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto">                
+        
+        <ul class="navbar-nav ml-auto">
+            <li><a routerLink="http://localhost:4200/" class="nav-link">Home</a></li>                
             <li><a *ngIf="loginService.isUserLoggedIn()" href="http://localhost:4200/account/summary" class="nav-link">{{email}} </a></li>
             <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
             <li><a class="mr-sm-2" *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
@@ -25,4 +27,5 @@
               
         </ul>
     </nav>
+    
 </header>
