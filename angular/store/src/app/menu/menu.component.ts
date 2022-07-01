@@ -3,7 +3,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { User } from '../model/user';
 import { Role } from '../model/role';
 import { HttpClientService } from '../service/http-client.service';
-
+import { Product } from '../model/Product';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   public email: string;
   public status: string;
  
-
+  cartProducts: any;
   user: User;
   roles: Role[];
 
@@ -26,6 +26,14 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     
+    //from localstorage retrieve the cart item
+    let data = localStorage.getItem('cart');
+    //if this is not null convert it to JSON else initialize it as empty
+    if (data !== null) {
+      this.cartProducts = JSON.parse(data);
+    } else {
+      this.cartProducts = [];
+    }
 
     this.user = new User();
     

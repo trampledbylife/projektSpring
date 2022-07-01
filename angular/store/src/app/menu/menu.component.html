@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 0px; border-radius: 0%;">
-        <div><a href="http://localhost:4200/" style="font-family: 'Papyrus', Fantasy;" class="navbar-brand">Brand</a></div>
+        <h1 href="http://localhost:4200/" style="font-family: 'Papyrus', Fantasy;" class="navbar-brand">Brand</h1>
         
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
@@ -18,11 +18,17 @@
         </ul>
         
         <ul class="navbar-nav ml-auto">
-            <li><a href="http://localhost:4200/" class="nav-link">Home</a></li>                
-            <li><a *ngIf="loginService.isUserLoggedIn()" href="http://localhost:4200/account/summary" class="nav-link">{{email}} </a></li>
+            <li><a style="color:white; height: 10px;" class="glyphicon glyphicon-home"></a></li>
+            <li><a href="http://localhost:4200/" style="padding-right: 20px;" class="nav-link">Home</a></li>  
+            <li><a *ngIf="loginService.isUserLoggedIn()" style="color:white; height: 10px;" class="glyphicon glyphicon-shopping-cart"></a></li>
+            <li><a *ngIf="loginService.isUserLoggedIn()" style="padding-right: 20px;" routerLink="/cart" class="nav-link">Cart</a></li>
+            <li><a *ngIf="loginService.isUserLoggedIn()" style="color:white; height: 10px;" class="glyphicon glyphicon-user"></a></li>
+            <li><a *ngIf="loginService.isUserLoggedIn()" style="padding-right: 20px;" href="http://localhost:4200/account/summary" class="nav-link">{{email}} </a></li>
             <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
-            <li><a class="mr-sm-2" *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
+            <li><a *ngIf="loginService.isUserLoggedIn()" style="color:white; height: 10px;" class="glyphicon glyphicon-log-out"></a></li>
+            <li><a class="mr-sm-2" *ngIf="loginService.isUserLoggedIn()" style="padding-right: 20px;" routerLink="/logout" class="nav-link">LogOut</a></li>
             <li><a *ngIf="!loginService.isUserLoggedIn()" class="nav-link" routerLink="/register">Register</a></li>
+            
             
               
         </ul>
