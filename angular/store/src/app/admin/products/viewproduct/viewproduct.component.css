@@ -40,12 +40,11 @@ img{
 }
 
 .btn-del{
-    border: 3px solid red;
+    border: 3px solid black;
 }
 
 .btn-del:hover{
     font-size: larger;
-    font-weight: bold;
-    background: red;
-    color: #000;
+    background: black;
+    color: white;
 }

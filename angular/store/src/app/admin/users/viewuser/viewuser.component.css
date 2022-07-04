@@ -30,14 +30,14 @@
 }
 
 .btn-del{
-    border: 3px solid red;
+    border: 3px solid Black;
 }
 
 .btn-del:hover{
     font-size: larger;
     font-weight: bold;
-    background: red;
-    color: #000;
+    background: black;
+    color: white;
 }
 
 .card {
