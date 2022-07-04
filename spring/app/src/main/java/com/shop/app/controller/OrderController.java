@@ -30,6 +30,7 @@ public class OrderController {
 
     @Autowired
     private AddressRepository addressRepository;
+
     @Autowired
     private OrderRepository orderRepository;
 
@@ -50,25 +51,20 @@ public class OrderController {
         Address address = response.getAddress();
         List<OrderDetails> orders = response.getOrderDetails();
 
-        long address_id = addressRepository.save(address).getShipping_address_id();
+        final var address_id = addressRepository.save(address).getShipping_address_id();
         Order order = new Order();
-
 
         Payment payment = new Payment();
         payment.setPayment_status("order paid");
 
-
-        long payment_id = paymentRepository.save(payment).getPayment_id();
-
+        final var payment_id = paymentRepository.save(payment).getPayment_id();
         double total_cost = 0;
-        for(int i=0; i< orders.size(); i++)
-        {
-            total_cost += orders.get(i).getCost();
+
+        for (OrderDetails orderDetails : orders) {
+            total_cost += orderDetails.getCost();
         }
 
         payment.setAmount(total_cost);
-
-
         order.setShipping_address_id(address_id);
         order.setAuth_user_id(address.getUser_id());
         order.setOrder_status("in progress");
@@ -85,46 +81,34 @@ public class OrderController {
 
         order.setShipment_date(format.format(date));
 
+        final var order_id = orderRepository.save(order).getOrder_id();
 
-        long order_id = orderRepository.save(order).getOrder_id();
-
-        for(int i=0; i< orders.size(); i++)
-        {
-            orders.get(i).setOrder_id(order_id);
-            orderDetailsRepository.save(orders.get(i));
+        for (OrderDetails orderDetails : orders) {
+            orderDetails.setOrder_id(order_id);
+            orderDetailsRepository.save(orderDetails);
         }
 
+        //zmiejszeie ilosc produktów w bazie o ilosc zamowionych
 
         Product product = new Product();
-        //zmiejszeie ilosc produktów w bazie o ilosc zamowionych
-        for(int i=0; i< orders.size(); i++)
-        {
-            product = productRepository.getOne( orders.get(i).getProduct_id());
-            product.setQuantity(product.getQuantity() - orders.get(i).getQuantity());
+        for (OrderDetails orderDetails : orders) {
+            product = productRepository.getOne(orderDetails.getProduct_id());
+            product.setQuantity(product.getQuantity() - orderDetails.getQuantity());
 
             int solded = 0;
             solded = product.getSolded();
 
-            product.setSolded( solded + orders.get(i).getQuantity());
-
+            product.setSolded(solded + orderDetails.getQuantity());
 
             productRepository.save(product);
-
         }
     }
-
-
 
     @GetMapping(path = { "/getOrderID/{user_id}" })
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public List<Order> getByID(@PathVariable("user_id") long user_id) {
-
-
         return orderRepository.findByUser(user_id);
     }
-
-
-
 
     @GetMapping("/getAllOrders")
     @PreAuthorize("hasRole('ADMIN')")
@@ -132,29 +116,21 @@ public class OrderController {
         return orderRepository.findAll();
     }
 
-
     @GetMapping(path = { "/getOrderDetails/{order_id}" })
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public List<OrderDetails> getOrderDetails(@PathVariable("order_id") long order_id) {
-
-
         return orderDetailsRepository.findByOrderID(order_id);
     }
-
 
     @GetMapping(path = { "/getShippingAddress/{order_id}" })
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public Address getShippingAddress(@PathVariable("order_id") long order_id) {
-
-
         return addressRepository.findByShippingID(order_id);
     }
 
     @GetMapping(path = { "/getPaymentStatus/{payment_id}" })
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public Payment getPaymentStatus(@PathVariable("payment_id") long payment_id) {
-
-
         return paymentRepository.findByPaymentID(payment_id);
     }
 
@@ -163,6 +139,4 @@ public class OrderController {
     public void setOrderStatus(@RequestBody Order order) {
         orderRepository.save(order);
     }
-
-
 }

@@ -57,7 +57,7 @@ public class ProductController {
     @DeleteMapping(path = { "/{id}" })
     @PreAuthorize("hasRole('ADMIN')")
     public Product deleteProduct(@PathVariable("id") long id) {
-        Product product = productRepository.getOne(id);
+        final var product = productRepository.getOne(id);
         productRepository.deleteById(id);
         return product;
     }

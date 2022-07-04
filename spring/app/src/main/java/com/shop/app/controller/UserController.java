@@ -34,62 +34,44 @@ public class UserController {
         return userRepository.findAll();
     }
 
-
-
-
     @GetMapping(path = { "/userStatus/{email}" })
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public User getByEmail(@PathVariable("email") String email) {
-
-        User user = userRepository.findByEmail(email);
-        return user;
+        return  userRepository.findByEmail(email);
     }
-
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ADMIN')")
     public void createUser(@RequestBody User user) {
-        User response = null;
-        response = userRepository.findByEmail(user.getEmail());
-
+        final var response = userRepository.findByEmail(user.getEmail());
 
         if(response!=null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User exist");
         }
         else userService.saveUser(user);
     }
-
 
     @PostMapping("/register")
     public void newUser(@RequestBody User user) throws Exception {
-
-        User response = null;
-        response = userRepository.findByEmail(user.getEmail());
-
+        final var response = userRepository.findByEmail(user.getEmail());
 
         if(response!=null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User exist");
         }
         else userService.saveUser(user);
-
     }
-
 
     @DeleteMapping(path = { "/{id}" })
     @PreAuthorize("hasRole('ADMIN')")
     public User deleteUser(@PathVariable("id") long id) {
-        User user = userRepository.getOne(id);
-
+        final var user = userRepository.getOne(id);
         userRepository.deleteById(id);
         return user;
     }
 
-
     @PostMapping(path = { "/setAdminRights" })
-    public void setAdminRights(@RequestBody User user)
-    {
+    public void setAdminRights(@RequestBody User user) {
         user.setStatus("ROLE_ADMIN");
         userRepository.save(user);
     }
-
 }

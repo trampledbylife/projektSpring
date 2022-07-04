@@ -22,5 +22,4 @@ public class UserServiceImp implements UserService {
         user.setStatus("ROLE_USER");
         userRepository.save(user);
     }
-
 }
