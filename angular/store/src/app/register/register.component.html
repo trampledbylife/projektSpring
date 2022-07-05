@@ -1,6 +1,5 @@
 <app-menu></app-menu>
 
-
 <body>
 
   <div class="container">
@@ -10,29 +9,34 @@
       </div>
 
       <div class="welcome"><strong>Welcome,</strong> please register</div>
-        <form class="form-horizontal login-form">
-          <div class="form-group relative">
-            <input id="email" class="form-control input-lg" type="email" name="username" [(ngModel)]="user.email" placeholder="Username" required>
-            <i class="fa fa-user"></i>
-          </div>
-          <div class="form-group relative password">
-            <input id="password" class="form-control input-lg" type="password" name="password" [(ngModel)]="user.password" placeholder="Password" required>
-            <i class="fa fa-lock"></i>
-          </div>
-          <div class="form-group relative password">
-            <input id="password" class="form-control input-lg" type="password" name="Repeat password" [(ngModel)]="password" placeholder="Password" required>
-            <i class="fa fa-repeat"></i>
-          </div>
-          <div class="form-group">
-            <p *ngIf="error==true"  style="color: red;  text-align: center;">User with this email exist!</p>
+      <form class="form-horizontal login-form">
+        <div class="form-group relative">
+          <input id="email" class="form-control input-lg" type="email" name="username" [(ngModel)]="user.email"
+            placeholder="Username" required>
+          <i class="fa fa-user"></i>
+        </div>
+        <div class="form-group relative password">
+          <input id="password" class="form-control input-lg" type="password" name="password" [(ngModel)]="user.password"
+            placeholder="Password" required>
+          <i class="fa fa-lock"></i>
+        </div>
+        <div class="form-group relative password">
+          <input id="password" class="form-control input-lg" type="password" name="Repeat password"
+            [(ngModel)]="password" placeholder="Password" required>
+          <i class="fa fa-repeat"></i>
+        </div>
+        <div class="form-group">
+          <p *ngIf="error==true" style="color: red;  text-align: center;">User with this email exist!</p>
 
-             <p *ngIf="validate(user.email, user.password, password)!='OK'" style="color: red;  text-align: center;"> {{validate(user.email, user.password, password)}}</p>
-            <button (click)="addUser()" type="submit" class="btn btn-success btn-lg btn-block" >Login</button>
-          </div>
-          <div class="checkbox pull-right">
-            <label> <a class="forget" href="http://localhost:4200/login" title="Register">Already have account? Login</a> </label>
-          </div>
-        </form>
+          <p *ngIf="validate(user.email, user.password, password)!='OK'" style="color: red;  text-align: center;">
+            {{validate(user.email, user.password, password)}}</p>
+          <button (click)="addUser()" type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+        </div>
+        <div class="checkbox pull-right">
+          <label> <a class="forget" href="http://localhost:4200/login" title="Register">Already have account? Login</a>
+          </label>
+        </div>
+      </form>
     </div>
   </div>
 </body>

@@ -16,14 +16,12 @@ export class AdduserComponent implements OnInit {
   @Output()
   userAddedEvent = new EventEmitter();
 
-
   error = false
 
  constructor(private httpClientService: HttpClientService,
     private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   addUser() {
     this.httpClientService.addUser(this.user).subscribe(

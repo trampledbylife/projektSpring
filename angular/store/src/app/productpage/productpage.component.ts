@@ -10,13 +10,11 @@ import { User } from '../model/user';
   templateUrl: './productpage.component.html',
   styleUrls: ['./productpage.component.css']
 })
-export class ProductpageComponent implements OnInit {
 
+export class ProductpageComponent implements OnInit {
   products: Array<Product>;
   cartProducts: any;
-
   productID: number;
-  
   product: Product;
   user: User;
   howMany: number;
@@ -27,23 +25,19 @@ export class ProductpageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private httpClientService: HttpClientService, private router: Router) { }
 
   ngOnInit(): void {
-
     this.howMany = 1;
 
     this.route.queryParams
-    .subscribe((params) => {
-      this.productID = params.id;
-    });
+      .subscribe((params) => {
+        this.productID = params.id;
+      });
 
     this.product = new Product();
     this.user = new User();
 
     this.httpClientService.getOneItem(this.productID).subscribe(
-
       response => this.setItemToShow(response),
     );
-
-    
 
     //odczytuje z localstorage cart
     let data = localStorage.getItem('cart');
@@ -54,63 +48,43 @@ export class ProductpageComponent implements OnInit {
     }
   }
 
-
   setItemToShow(response: Product): void {
     this.product = response;
-    this.product.retrievedImage = 'data:image/jpeg;base64,' + this.product.picByte;     
+    this.product.retrievedImage = 'data:image/jpeg;base64,' + this.product.picByte;
   }
 
-
   addToCart() {
-  
     let cartData = [];
-   
     let data = localStorage.getItem('cart');
-    
-  
+
     if (data !== null) {
       cartData = JSON.parse(data);
     }
-    else
-    {
+    else {
       this.product.inCart = this.howMany;
       this.flag = true;
     }
 
-
-    if(!this.product.inCart) this.product.inCart = 1;
-
+    if (!this.product.inCart) this.product.inCart = 1;
 
     for (let item of cartData) {
-      if(item.id == this.product.id)
-      {
+      if (item.id == this.product.id) {
         item.inCart = item.inCart + this.howMany;
         this.flag = false;
-        break;  
+        break;
       }
-
       this.flag = true;
     }
 
-    
-      
-    
-    if(this.flag==true)  cartData.push(this.product);
+    if (this.flag == true) cartData.push(this.product);
 
-  
     this.updateCartData(cartData);
     localStorage.setItem('cart', JSON.stringify(cartData));
-
 
     this.router.navigate(['cart']);
   }
 
-
-
-
-
   updateCartData(cartData) {
     this.cartProducts = cartData;
   }
-
 }

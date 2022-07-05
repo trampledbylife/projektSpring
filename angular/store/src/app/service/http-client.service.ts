@@ -18,7 +18,6 @@ export class HttpClientService {
   constructor(private httpClient: HttpClient) {
   }
 
-
   setStatus(order: Order) {
     return this.httpClient.post<Order>('http://localhost:8080/order/setOrderStatus', order);
   }
@@ -31,16 +30,13 @@ export class HttpClientService {
     return this.httpClient.get<Address>('http://localhost:8080/order/getShippingAddress/' + id);
   }
 
-
   getPaymentStatus(id) {    
     return this.httpClient.get<Payment>('http://localhost:8080/order/getPaymentStatus/' + id);
   }
 
-
   getAllOrders() {    
     return this.httpClient.get<Order[]>('http://localhost:8080/order/getAllOrders');
   }
-
   
   addAll(newAddress: Address, newProduct: OrderDetails[])
   {
@@ -51,11 +47,9 @@ export class HttpClientService {
     return this.httpClient.post<Entry>('http://localhost:8080/order/makeOrder', this.newEntry);
   }
 
-
   getOrders(id) {    
     return this.httpClient.get<Order[]>('http://localhost:8080/order/getOrderID/' + id);
   }
-
 
   getOrderDetails(id) {    
     return this.httpClient.get<OrderDetails[]>('http://localhost:8080/order/getOrderDetails/' + id);
@@ -64,12 +58,10 @@ export class HttpClientService {
   getUsers() {    
     return this.httpClient.get<User[]>('http://localhost:8080/users/get');
   }
-
   
   getByEmail(email) {    
     return this.httpClient.get<User>('http://localhost:8080/users/userStatus/' + email)
   }
-
 
   addUser(newUser: User) {
     return this.httpClient.post<User>('http://localhost:8080/users/add', newUser);
@@ -106,7 +98,4 @@ export class HttpClientService {
   updateProduct(updatedProduct: Product) {
     return this.httpClient.put<Product>('http://localhost:8080/products/update', updatedProduct);
   }
-
-
-
 }

@@ -10,15 +10,13 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-
   @Input()
   user: User
 
   error = false
-
   password: string;
- 
- constructor(private httpClientService: HttpClientService,
+
+  constructor(private httpClientService: HttpClientService,
     private router: Router) { }
 
   ngOnInit() {
@@ -27,11 +25,9 @@ export class RegisterComponent implements OnInit {
 
   addUser() {
 
-    if(this.validate(this.user.email, this.user.password, this.password)=="OK") 
-    {
+    if (this.validate(this.user.email, this.user.password, this.password) == "OK") {
       this.httpClientService.registerUser(this.user).subscribe(
         (user) => {
-        
           this.router.navigate(['shop']);
           this.error = false
         },
@@ -40,17 +36,14 @@ export class RegisterComponent implements OnInit {
         }
       );
     }
-  
   }
 
-  validate(email, password1, password2)
-  {
+  validate(email, password1, password2) {
     let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
-
-    if(email==null || password1==null || password2==null) return "Please complete all fields";
-    if(!EMAIL_REGEXP.test(this.user.email)) return "Please provide a valid email";
-    if(this.password.length<5) return "Passwords is to short minimum length is 5";
-    if(password2!=password1) return "Passwords don't match";
+    if (email == null || password1 == null || password2 == null) return "Please complete all fields";
+    if (!EMAIL_REGEXP.test(this.user.email)) return "Please provide a valid email";
+    if (this.password.length < 5) return "Passwords is to short minimum length is 5";
+    if (password2 != password1) return "Passwords don't match";
     return "OK";
   }
 }

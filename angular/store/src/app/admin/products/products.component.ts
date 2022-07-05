@@ -29,10 +29,8 @@ export class ProductsComponent implements OnInit {
     );
     this.activedRoute.queryParams.subscribe(
       (params) => {
-       
         this.action = params['action'];
-
-	      const id = params['id'];
+        const id = params['id'];
 
         if (id) {
           this.selectedProduct = this.products.find(product => {
@@ -43,22 +41,20 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-   
   handleSuccessfulResponse(response) {
     this.products = new Array<Product>();
-    
+
     this.productsRecieved = response;
     for (const product of this.productsRecieved) {
-    
       const productwithRetrievedImageField = new Product();
       productwithRetrievedImageField.id = product.id;
       productwithRetrievedImageField.name = product.name;
       productwithRetrievedImageField.retrievedImage = 'data:image/jpeg;base64,' + product.picByte;
       productwithRetrievedImageField.description = product.description;
       productwithRetrievedImageField.price = product.price;
-      productwithRetrievedImageField.picByte=product.picByte;
-      productwithRetrievedImageField.category=product.category;
-      productwithRetrievedImageField.quantity=product.quantity;
+      productwithRetrievedImageField.picByte = product.picByte;
+      productwithRetrievedImageField.category = product.category;
+      productwithRetrievedImageField.quantity = product.quantity;
       this.products.push(productwithRetrievedImageField);
     }
   }

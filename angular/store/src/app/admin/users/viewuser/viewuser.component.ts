@@ -12,19 +12,15 @@ export class ViewuserComponent implements OnInit {
 
   @Input()
   user: User
-  
 
   @Output()
   userDeletedEvent = new EventEmitter();
-
-
   role: string;
-  
+
   constructor(private httpClientService: HttpClientService,
     private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   deleteUser() {
     this.httpClientService.deleteUser(this.user.id).subscribe(
@@ -33,7 +29,6 @@ export class ViewuserComponent implements OnInit {
         this.router.navigate(['admin', 'users']);
       }
     );
-
   }
 
   setAdminUser() {
@@ -41,5 +36,4 @@ export class ViewuserComponent implements OnInit {
     this.httpClientService.setAdminRights(this.user).subscribe();
     this.router.navigate(['admin', 'users']);
   }
-
 }

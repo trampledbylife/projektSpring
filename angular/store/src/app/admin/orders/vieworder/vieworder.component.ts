@@ -19,22 +19,17 @@ export class VieworderComponent implements OnInit {
   constructor(private httpClientService: HttpClientService) { }
 
   ngOnInit(): void {
-
-
     let data = localStorage.getItem('products');
     if (data !== null) {
       this.products = JSON.parse(data);
     } else {
       this.products = [];
     }
-
   }
 
 
   setOrder(){
     this.order.order_status = "order sended";
-    this.httpClientService.setStatus(this.order).subscribe(
-    
-    );
+    this.httpClientService.setStatus(this.order).subscribe();
   }
 }

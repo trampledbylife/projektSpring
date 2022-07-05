@@ -1,63 +1,9 @@
 <app-menu></app-menu>
 
-
-<div id="products_stats" >
-
-  <div class="container-fluid" style="margin-top: 1%; ">
-
-
-    <h4>  Total orders in this month: {{total_solded_month}} orders </h4>
-    <table class="table">
-      <thead>
-        <th>Day</th>         
-        <th>Orders per day</th> 
-        <th>Monthly percentage</th> 
-        
-      </thead>                
-      <tbody>  
-
-        <tr *ngFor="let item of stats" >  
-          <ng-container *ngIf="item.month == month" >
-          <td>{{item.day}}-{{item.month}}-{{item.year}}</td>
-          <td>{{item.value}}</td>
-          <td>
-        
-            <div class="container">
-            <div class="skills" [ngStyle]="{'width': item.percentageVal + '%'} " style="background-color:violet;">{{item.percentageVal}}%</div>
-            </div>
-        </td>
-      </ng-container> 
-        </tr>
-      </tbody>
-    </table>
-  
-  
-
-
-
-  <h4>  Total solded items: {{total_solded}} items </h4>
-  <table class="table">
-      <thead>
-        <th>Product Name</th>        
-        <th>Solded</th>    
-        <th>Percentage of total sales</th> 
-      </thead>                
-      <tbody>  
-        <tr *ngFor="let item of products" >  
-          <td>{{item.name}}</td>
-          <td>{{item.solded}}</td>
-          <td>
-        
-              <div class="container">
-              <div class="skills" [ngStyle]="{'width': item.precOfSales + '%'} " style="background-color: lime;">{{item.precOfSales}}%</div>
-              </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
+<div id="products_stats">
+	<canvas baseChart
+			[data]="pieChartData"
+			[labels]="pieChartLabels"
+			[chartType]="pieChartType">
+	</canvas>
 </div>
-
-
-    
-

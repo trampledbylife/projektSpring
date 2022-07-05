@@ -22,10 +22,7 @@ export class OrdersComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-  
     this.httpClientService.getAllOrders().subscribe(
-
       response => this.usersOrders(response)
     );
 
@@ -38,7 +35,6 @@ export class OrdersComponent implements OnInit {
         }
       }
     );
-
   }
 
   usersOrders(response: Order[]) {
@@ -46,49 +42,38 @@ export class OrdersComponent implements OnInit {
 
     for (let item of this.orders) {
       this.httpClientService.getAddress(item.shipping_address_id).subscribe(
-          
         response => this.getAddres(response, item)
-      );  
+      );
     }
 
 
     for (let item of this.orders) {
-      
       this.httpClientService.getOrderDetails(item.order_id).subscribe(
-        
         response => this.getDetails(response, item)
-      );        
+      );
     }
 
 
     for (let item of this.orders) {
-      
       this.httpClientService.getPaymentStatus(item.payment_id).subscribe(
-        
         response => this.getPayment(response, item)
-      );        
-
+      );
     }
   }
 
   getDetails(response: OrderDetails[], item: Order) {
-            
     item.order_details = response;
   }
 
   getAddres(response: Address, item: Order) {
-
     item.address = response;
   }
 
   getPayment(response: Payment, item: Order) {
-
     item.payment = response;
-    
   }
 
   viewOrderDetails(order_id: number) {
-    this.router.navigate(['admin','orders'], {queryParams : {order_id, action: 'view'}});
+    this.router.navigate(['admin', 'orders'], { queryParams: { order_id, action: 'view' } });
   }
-
 }

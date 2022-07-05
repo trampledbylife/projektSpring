@@ -4,7 +4,7 @@ import { HttpClientService } from '../service/http-client.service';
 import { Router } from '@angular/router';
 import { User } from '../model/user';
 import { Order } from '../model/Order';
-import {  OrderDetails } from '../model/OrderDetails';
+import { OrderDetails } from '../model/OrderDetails';
 
 @Component({
   selector: 'app-shipmentpage',
@@ -36,8 +36,6 @@ export class ShipmentpageComponent implements OnInit {
       this.cartProducts = [];
     }
 
-    
-   
     for (let item of this.cartProducts) {
       this.product = new OrderDetails();
       this.product.product_id = item.id;
@@ -45,48 +43,33 @@ export class ShipmentpageComponent implements OnInit {
       this.product.cost = item.inCart * item.price;
 
       this.products.push(this.product);
-     
     }
 
     this.address = new Address();
     this.user = new User();
 
     this.httpClientService.getByEmail(sessionStorage.getItem('username')).subscribe(
-
       response => this.userStatus(response)
     );
-
   }
 
   userStatus(response: User) {
-
     this.user = response;
     this.address.user_id = this.user.id;
   }
 
   execute() {
-   
-
-
     this.httpClientService.addAll(this.address, this.products).subscribe();
 
     localStorage.removeItem('cart');
     this.router.navigate(['']);
 
-
     this.httpClientService.getOrders(this.address.user_id).subscribe(
-
       response => this.userOrders(response)
     );
-
-
   }
-
 
   userOrders(response: Order[]) {
-
     this.orders = response;
-  
   }
-
 }

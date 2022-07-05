@@ -1,43 +1,47 @@
 <app-menu></app-menu>
-            
+
 <div class="container-fluid main-container">
     <div class="row" style="margin-right: 0px; margin-left: 0px;">
-        <div class="col-sm-12 col-md-6 col-lg-8" style="padding: 0% 0% 0% 10%;">            
+        <div class="col-sm-12 col-md-6 col-lg-8" style="padding: 0% 0% 0% 10%;">
             <h3>Categories</h3>
-            <button  class="btn btn-primary btn-sm" style="background-color:gray; border-color: black;" (click)="setCategory('all')"> All</button>
-            <button  class="btn btn-primary btn-sm" style="margin-left:5px; background-color:gray; border-color: black;"(click)="setCategory('Devices')"> Devices</button>
-            <button  class="btn btn-primary btn-sm" style="margin-left:5px; background-color:gray; border-color: black;"(click)="setCategory('Materials')"> Materials</button>
-            <button  class="btn btn-primary btn-sm" style="margin-left:5px; background-color:gray; border-color: black;" (click)="setCategory('Other')"> Other</button>
+            <button class="btn btn-primary btn-sm" style="background-color:gray; border-color: black;"
+                (click)="setCategory('all')"> All</button>
+            <button class="btn btn-primary btn-sm" style="margin-left:5px; background-color:gray; border-color: black;"
+                (click)="setCategory('Devices')"> Devices</button>
+            <button class="btn btn-primary btn-sm" style="margin-left:5px; background-color:gray; border-color: black;"
+                (click)="setCategory('Materials')"> Materials</button>
+            <button class="btn btn-primary btn-sm" style="margin-left:5px; background-color:gray; border-color: black;"
+                (click)="setCategory('Other')"> Other</button>
         </div>
-         
 
         <div class="col-sm-12 col-md-6 col-lg-3">
             <li class="dropdown">
                 <a href="#" class="btn btn-dark cart-button btn-lg " data-toggle="dropdown" aria-expanded="false">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart 
-                    <span class="badge badge-pill bg-danger">{{cartProducts.length}} </span>    
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart
+                    <span class="badge badge-pill bg-danger">{{cartProducts.length}} </span>
                 </a>
-                <ul  class="dropdown-menu dropdown-cart" role="menu">
+                <ul class="dropdown-menu dropdown-cart" role="menu">
                     <li *ngFor="let item of cartProducts">
                         <div class="item product-cart-item row">
                             <div class="col-6" *ngIf="item">
-                               <p class="cart-item">{{item.name}}</p>
+                                <p class="cart-item">{{item.name}}</p>
                             </div>
                             <div class="col-6" *ngIf="item">
-                               <p class="cart-item"><strong>{{item.inCart}}x{{item.price}} PLN</strong></p>
+                                <p class="cart-item"><strong>{{item.inCart}}x{{item.price}} PLN</strong></p>
                             </div>
-
-                            
                         </div>
                     </li>
                     <hr>
                     <div class="row" style="margin-right: 0px; margin-left: 0px;">
                         <div class="col-6">
-                            <li><a class="btn btn-dark btn-small" style="color: #fff;" role="button" (click)="goToCart()">Open Cart</a></li>
+                            <li><a class="btn btn-dark btn-small" style="color: #fff;" role="button"
+                                    (click)="goToCart()">Open Cart</a></li>
                         </div>
                         <div class="col-6">
                             <li *ngIf="cartProducts.length > 0">
-                                <a class="btn btn-danger btn-small" style="color: #fff;" role="button" (click)="emptyCart()">Clear Cart</a></li>                            
+                                <a class="btn btn-danger btn-small" style="color: #fff;" role="button"
+                                    (click)="emptyCart()">Clear Cart</a>
+                            </li>
                         </div>
                     </div>
                 </ul>
@@ -46,66 +50,64 @@
     </div>
 </div>
 
-<ng-container *ngIf="category=='all'" >
+<ng-container *ngIf="category=='all'">
     <section class="section-products">
         <div class="container">
-                <div class="row justify-content-center text-center">
-                        <div class="col-md-8 col-lg-6">
-                                <div class="header">
-                                        <h3>Featured Product</h3>
-                                        <h2>Popular Products</h2>
-                                </div>
-                        </div>
+            <div class="row justify-content-center text-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="header">
+                        <h3>Featured Product</h3>
+                        <h2>Popular Products</h2>
+                    </div>
                 </div>
-            <ng-container *ngIf="category=='all'" >
+            </div>
+            <ng-container *ngIf="category=='all'">
                 <div class="row">
-                        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let product of products;let i=index" >
-                                <div id="product-1" class="single-product">
-                                        <div class="part-1" style="background: url('{{product.retrievedImage}}') no-repeat center; background-size: cover">
-                                                <ul>
-                                                        <li><a (click)="addToCart(product.id)"><i class="fas fa-shopping-cart"></i></a></li>
-                                                        <li><a (click)="showItem(product.id)"><i class="fas fa-expand"></i></a></li>
-                                                </ul>
-                                        </div>
-                                        <div class="part-2">
-                                                <h3 class="product-title">{{product.name}}</h3>
-                                                <h4 class="product-old-price">29zł</h4>
-                                                <h4 class="product-price">{{product.price}}zł</h4>
-                                        </div>
-                                </div>
+                    <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let product of products;let i=index">
+                        <div id="product-1" class="single-product">
+                            <div class="part-1"
+                                style="background: url('{{product.retrievedImage}}') no-repeat center; background-size: cover">
+                                <ul>
+                                    <li><a (click)="addToCart(product.id)"><i class="fas fa-shopping-cart"></i></a></li>
+                                    <li><a (click)="showItem(product.id)"><i class="fas fa-expand"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="part-2">
+                                <h3 class="product-title">{{product.name}}</h3>
+                                <h4 class="product-price">{{product.price}}zł</h4>
+                            </div>
                         </div>
+                    </div>
                 </div>
             </ng-container>
-            </div>
+        </div>
     </section>
 </ng-container>
-<!-- partial -->
 
-    <section class="section-products">
-        <div class="container">
-            <ng-container *ngIf="category!='all'" >
-                <div class="row">
-                        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let product of products;let i=index" >
-                            <ng-container *ngIf="category==product.category ">
-                                <div id="product-1" class="single-product">
-                                        <div class="part-1" style="background: url('{{product.retrievedImage}}') no-repeat center; background-size: cover">
-                                                <ul>
-                                                        <li><a (click)="addToCart(product.id)"><i class="fas fa-shopping-cart"></i></a></li>
-                                                        <li><a (click)="showItem(product.id)"><i class="fas fa-expand"></i></a></li>
-                                                </ul>
-                                        </div>
-                                        <div class="part-2">
-                                                <h3 class="product-title">{{product.name}}</h3>
-                                                <h4 class="product-old-price">29zł</h4>
-                                                <h4 class="product-price">{{product.price}}zł</h4>
-                                        </div>
-                                </div>
-                            </ng-container>
+<section class="section-products">
+    <div class="container">
+        <ng-container *ngIf="category!='all'">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let product of products;let i=index">
+                    <ng-container *ngIf="category==product.category ">
+                        <div id="product-1" class="single-product">
+                            <div class="part-1"
+                                style="background: url('{{product.retrievedImage}}') no-repeat center; background-size: cover">
+                                <ul>
+                                    <li><a (click)="addToCart(product.id)"><i class="fas fa-shopping-cart"></i></a></li>
+                                    <li><a (click)="showItem(product.id)"><i class="fas fa-expand"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="part-2">
+                                <h3 class="product-title">{{product.name}}</h3>
+                                <h4 class="product-price">{{product.price}}zł</h4>
+                            </div>
                         </div>
+                    </ng-container>
                 </div>
-            </ng-container>
             </div>
-    </section>
+        </ng-container>
+    </div>
+</section>
 
 <app-footer></app-footer>
-   

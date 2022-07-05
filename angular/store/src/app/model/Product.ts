@@ -5,9 +5,9 @@ export class Product {
     price: number;
     picByte: string;
     category: string;
-    quantity: number;    
+    quantity: number;
     retrievedImage: string;
     solded: number;
     inCart: number;
     precOfSales: number;
-    }
+}

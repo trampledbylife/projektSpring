@@ -29,11 +29,7 @@
             <li><a *ngIf="loginService.isUserLoggedIn()" style="color:black; height: 10px;" class="glyphicon glyphicon-log-out"></a></li>
             <li><a class="mr-sm-2" *ngIf="loginService.isUserLoggedIn()" style="padding-right: 20px;" routerLink="/logout" class="nav-link">LogOut</a></li>
             <li><a *ngIf="!loginService.isUserLoggedIn()" style="color:black; height: 10px;" class="glyphicon glyphicon-plus"></a></li>
-            <li><a *ngIf="!loginService.isUserLoggedIn()" style="padding-right: 20px;" class="nav-link" routerLink="/register">Register</a></li>
-            
-            
-              
+            <li><a *ngIf="!loginService.isUserLoggedIn()" style="padding-right: 20px;" class="nav-link" routerLink="/register">Register</a></li>    
         </ul>
     </nav>
-    
 </header>

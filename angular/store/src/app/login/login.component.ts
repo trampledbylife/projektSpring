@@ -16,8 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
     private loginservice: AuthenticationService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   checkLogin() {
     (this.loginservice.authenticate(this.username, this.password).subscribe(
@@ -27,11 +26,8 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.invalidLogin = true
-
       }
     )
     );
-
   }
-
 }

@@ -21,9 +21,7 @@ export class ShoppageComponent implements OnInit {
 
   constructor(private router: Router, private httpClientService: HttpClientService) { }
 
-
   ngOnInit() {
-
     this.category = "all";
     this.httpClientService.getProducts().subscribe(
       response => this.handleSuccessfulResponse(response),
@@ -56,63 +54,46 @@ export class ShoppageComponent implements OnInit {
       productwithRetrievedImageField.category = product.category;
       this.products.push(productwithRetrievedImageField);
     }
-
-
-    localStorage.setItem('products', JSON.stringify(this.products)); 
+    localStorage.setItem('products', JSON.stringify(this.products));
   }
 
   addToCart(productId) {
     //retrieve product from products array using the product id
 
-  
     let product = this.products.find(product => {
       return product.id === +productId;
     });
 
-
     let cartData = [];
-    
+
     let data = localStorage.getItem('cart');
-    
+
     if (data !== null) {
       cartData = JSON.parse(data);
     }
-    else
-    {
+    else {
       product.inCart = 1;
       this.flag = true;
     }
 
-   
-    
-    if(!product.inCart) product.inCart = 1; 
-
+    if (!product.inCart) product.inCart = 1;
 
     for (let item of cartData) {
-      if(item.id == productId)
-      {
+      if (item.id == productId) {
         item.inCart = item.inCart + 1;
         this.flag = false;
-        break;  
+        break;
       }
 
       this.flag = true;
     }
 
-    
-      
-    
-    if(this.flag==true)  cartData.push(product);
+    if (this.flag == true) cartData.push(product);
     //updated the cartProducts
     this.updateCartData(cartData);
     //save the updated cart data in localstorage
     localStorage.setItem('cart', JSON.stringify(cartData));
-  
   }
-
-
-
-
 
   updateCartData(cartData) {
     this.cartProducts = cartData;
@@ -127,13 +108,12 @@ export class ShoppageComponent implements OnInit {
     localStorage.clear();
   }
 
-
   //przekierowanie na strone produktu
-  showItem(id: number){
-    this.router.navigate(['item'], {queryParams : {id}});
+  showItem(id: number) {
+    this.router.navigate(['item'], { queryParams: { id } });
   }
 
-  setCategory(str: String){
+  setCategory(str: String) {
     this.category = str;
   }
 
